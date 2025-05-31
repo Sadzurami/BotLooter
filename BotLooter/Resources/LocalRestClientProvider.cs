@@ -14,7 +14,7 @@ public class LocalRestClientProvider : IRestClientProvider
         _restClient = new RestClient(
             o =>
             {
-                o.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+                o.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36";
                 o.FollowRedirects = false;
                 o.MaxTimeout = (int)TimeSpan.FromSeconds(60).TotalMilliseconds;
             },
