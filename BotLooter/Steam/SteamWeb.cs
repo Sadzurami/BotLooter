@@ -15,7 +15,7 @@ public class SteamWeb
     private readonly SteamUserSession _userSession;
     private readonly IHtmlParser _htmlParser;
 
-    private readonly int MaxItemsPerInventoryRequest = 2000;
+    private readonly int MaxItemsPerInventoryRequest = 2500;
 
     private readonly AsyncRetryPolicy<RestResponse<InventoryResponse?>> _getInventoryPolicy;
 
