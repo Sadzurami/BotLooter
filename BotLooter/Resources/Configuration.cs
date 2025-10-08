@@ -8,8 +8,11 @@ public class Configuration
 {
     public string? LootTradeOfferUrl { get; set; } = null;
     public List<string>? LootTradeOfferUrls { get; set; } = null;
-    
+
+    public string AccountsOrder { get; set; } = "Default";
+
     public string SecretsDirectoryPath { get; set; } = "";
+
     public string AccountsFilePath { get; set; } = "";
     public string SteamSessionsDirectoryPath { get; set; } = "";
     public string IgnoreAccountsFilePath { get; set; } = "";
@@ -123,6 +126,13 @@ public class Configuration
             ],
             ...
             """);
+        }
+
+        // Validate AccountsOrder - only allowed values are Default, Random, Reverse
+        var allowedOrders = new[] { "Default", "Random", "Reverse" };
+        if (string.IsNullOrWhiteSpace(config.AccountsOrder) || !allowedOrders.Any(a => a.Equals(config.AccountsOrder, StringComparison.OrdinalIgnoreCase)))
+        {
+            return (null, $"Параметр конфига 'AccountsOrder' должен иметь одно из значений: {string.Join(", ", allowedOrders)}.");
         }
 
         if (config.MaxItemsPerTrade > 8192)
