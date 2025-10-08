@@ -55,6 +55,30 @@ if (credentialsLoadResult.LootAccounts is not { } accountCredentials)
 
 FlowUtils.WaitForApproval("Всего аккаунтов для лута: {Count}", accountCredentials.Count);
 
+switch (config.AccountsOrder.ToLowerInvariant())
+{
+    case "random":
+        var random = new Random();
+
+        accountCredentials = accountCredentials.OrderBy(_ => random.Next()).ToList();
+
+        FlowUtils.WaitForApproval("Порядок аккаунтов: Случайный");
+
+        break;
+
+    case "reverse":
+        accountCredentials.Reverse();
+
+        FlowUtils.WaitForApproval("Порядок аккаунтов: Обратный");
+
+        break;
+
+    default:
+        FlowUtils.WaitForApproval("Порядок аккаунтов: По умолчанию");
+
+        break;
+}
+
 var lootClients = CreateLootClients();
 
 var looter = new Looter(Log.Logger);
